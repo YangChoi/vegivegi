@@ -1,0 +1,2 @@
+class ConfirmPhoneNumber < ApplicationRecord
+end

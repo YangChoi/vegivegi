@@ -1,0 +1,56 @@
+<h1>ModalTest</h1>
+
+<button class="button button-black" target="_blank" id="modal-event">
+인증번호 받기</button>
+
+
+
+<!-- send_confirm_number_modal -->
+<div class="ui mini modal" id="send_confirm_number_modal">
+  <%= form_with(url: send_phone_number_modal_test_index_path, method: :post) do |f| %>
+      <i class="close icon"></i>
+      <div class="content">
+      <h4>앱설치 및 서비스 신청 안내 메시지로 받기<h4>
+      <%= f.text_field :phone, placeholder: "핸드폰 번호" %>
+      <p>SMS발송 및 부정이용 방지용으로 휴대전화 번호를 수집하며 목적 달성 후 파기할 예정입니다.
+      <%= f.check_box :info_agree %></p>
+      <div class="actions">
+          <%= f.submit "인증하기", class: "ui yellow ok button", id: "send-confirm-number" %>
+      </div>
+      </div>
+  <% end %>
+</div>
+<!-- modal end -->
+<!-- check_confirm_number_modal -->
+<div class="ui mini modal" id="confirm_phone_number_modal">
+  <%= form_with(url: check_confirm_number_modal_test_index_path, method: :post, local: true) do |f| %>
+      <i class="close icon"></i>
+      <div class="content">
+      <h4>앱설치 및 서비스 신청 안내 메시지로 받기<h4>
+      <%= f.text_field :confirm_number, placeholder: "인증번호", autocomplete:"off" %>
+      <div class="actions">
+          <%= f.submit "전화번호 인증", class: "ui yellow ok button", id: "confirm-number-done" %>
+      </div>
+      </div>
+  <% end %>
+</div>
+<!-- modal end -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#modal-event').click(function(){
+    $('#send_phone_number_modal').modal('show');
+  })
+});
+
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#send-confirm-number').click(function(){
+    $('#send_confirm_number_modal').modal('hide');
+    $('#confirm_phone_number_modal').modal('show');
+  });
+})
+</script>
